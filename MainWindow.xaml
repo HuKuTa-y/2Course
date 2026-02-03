@@ -1,0 +1,30 @@
+﻿<Window x:Class="_2course.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_2course"
+        mc:Ignorable="d"
+        Title="Кодексы и статьи" Height="600" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Orientation="Vertical" Margin="10" Grid.Column="0">
+            <!-- Панель для источников (закон, кодекс) -->
+            <StackPanel x:Name="SourcesPanel" Orientation="Vertical" Margin="0,0,0,10"/>
+
+            <!-- Панель для всех статей -->
+            <!-- Убираем заголовки, оставляем только кнопки -->
+            <StackPanel x:Name="ArticlesPanel" Orientation="Vertical" />
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical" Margin="10" Grid.Column="1">
+            <!-- Панель для статей выбранного источника -->
+            <!-- Убираем заголовки, оставляем только содержимое -->
+            <StackPanel x:Name="ArticlesListPanel" Orientation="Vertical"/>
+        </StackPanel>
+    </Grid>
+</Window>
