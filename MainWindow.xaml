@@ -5,26 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_2course"
         mc:Ignorable="d"
-        Title="Кодексы и статьи" Height="600" Width="800">
+        Title="Кодексы и статьи" Height="600" Width="1100">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*" />
-            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="200"/>
+            <!-- Левая панель -->
+            <ColumnDefinition Width="200"/>
+            <!-- Правая панель -->
+            <ColumnDefinition Width="400"/>
+            
+            <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Orientation="Vertical" Margin="10" Grid.Column="0">
-            <!-- Панель для источников (закон, кодекс) -->
-            <StackPanel x:Name="SourcesPanel" Orientation="Vertical" Margin="0,0,0,10"/>
-
-            <!-- Панель для всех статей -->
-            <!-- Убираем заголовки, оставляем только кнопки -->
-            <StackPanel x:Name="ArticlesPanel" Orientation="Vertical" />
+        <!-- Панель для кодексов -->
+        <StackPanel x:Name="CodesPanel" Grid.Column="0" Background="#EEE" Margin="5">
+            <TextBlock Text="Кодексы" FontWeight="Bold" Margin="5"/>
         </StackPanel>
 
-        <StackPanel Orientation="Vertical" Margin="10" Grid.Column="1">
-            <!-- Панель для статей выбранного источника -->
-            <!-- Убираем заголовки, оставляем только содержимое -->
-            <StackPanel x:Name="ArticlesListPanel" Orientation="Vertical"/>
+        <!-- Панель для законов -->
+        <StackPanel x:Name="LawsPanel" Grid.Column="1" Background="#FFF" Margin="5">
+            <TextBlock Text="Законы" FontWeight="Bold" Margin="5"/>
         </StackPanel>
+
+        <!-- Панель для статей -->
+        <ScrollViewer Grid.Column="2" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Margin="5">
+            <StackPanel x:Name="ArticlesPanel">
+                <TextBlock Text="Статьи" FontWeight="Bold" Margin="5"/>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Window>

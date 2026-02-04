@@ -25,156 +25,124 @@ namespace _2course
 {
     public partial class MainWindow : Window
     {
-        private List<Article> allArticles = new List<Article>();
-        private List<Article> articlesCodeks = new List<Article>();
-        private List<Article> articlesLaws = new List<Article>();
+        private List<Article> codeksArticles;
+        private List<Article> lawsArticles;
+        private List<ArticleFull> articlesFull;
+        
 
         public MainWindow()
         {
             InitializeComponent();
-            LoadAllJsonFiles();
+            LoadData();
         }
 
-        private void LoadAllJsonFiles()
+        private void LoadData()
         {
-            var allArticlesFromFiles = new List<Article>();
-
-            string folderPath = @"C:\Users\Academy\source\repos\2course"; // замените путь
-
-            string lawsFilePath = System.IO.Path.Combine(folderPath, "laws.json");
-            string codeksFilePath = System.IO.Path.Combine(folderPath, "codeks.json");
-            string articlesCodeksPath = System.IO.Path.Combine(folderPath, "articles_codeks.json");
-            ;
-
-            // Загрузка законов
-            if (File.Exists(lawsFilePath))
+            // Загрузка codeks.json
+            try
             {
-                try
-                {
-                    string jsonLaws = File.ReadAllText(lawsFilePath);
-                    var laws = JsonSerializer.Deserialize<List<Article>>(jsonLaws);
-                    if (laws != null)
-                        allArticlesFromFiles.AddRange(laws);
-                }
-                catch { }
+                string codeksPath = "codeks.json";
+                string codeksJson = File.ReadAllText(codeksPath);
+                var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+                codeksArticles = JsonSerializer.Deserialize<List<Article>>(codeksJson, options);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при загрузке codeks.json: {ex.Message}");
+                return;
             }
 
-            // Загрузка кодексов
-            if (File.Exists(codeksFilePath))
+            // Загрузка laws.json
+            try
             {
-                try
-                {
-                    string jsonCodeks = File.ReadAllText(codeksFilePath);
-                    var codeks = JsonSerializer.Deserialize<List<Article>>(jsonCodeks);
-                    if (codeks != null)
-                        allArticlesFromFiles.AddRange(codeks);
-                }
-                catch { }
+                string lawsPath = "laws.json";
+                string lawsJson = File.ReadAllText(lawsPath);
+                var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+                lawsArticles = JsonSerializer.Deserialize<List<Article>>(lawsJson, options);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при загрузке laws.json: {ex.Message}");
+                return;
             }
 
-            // Загрузка статей кодексов
-            if (File.Exists(articlesCodeksPath))
+            // Загрузка articles_full.json
+            try
             {
-                try
-                {
-                    string jsonArticlesCodeks = File.ReadAllText(articlesCodeksPath);
-                    var articlesCodeksData = JsonSerializer.Deserialize<List<Article>>(jsonArticlesCodeks);
-                    if (articlesCodeksData != null)
-                        articlesCodeks = articlesCodeksData;
-                }
-                catch { }
+                string articlesPath = "articles_full.json";
+                string articlesJson = File.ReadAllText(articlesPath);
+                var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+                articlesFull = JsonSerializer.Deserialize<List<ArticleFull>>(articlesJson, options);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при загрузке articles_full.json: {ex.Message}");
+                return;
             }
 
-            // Загрузка статей законов
-
-
-            allArticles = allArticlesFromFiles;
-
-            GenerateArticleButtons();
-        }
-
-        private void GenerateArticleButtons()
-        {
-            ArticlesPanel.Children.Clear();
-
-            foreach (var item in allArticles)
+            // Создаем кнопки для кодексов
+            foreach (var article in codeksArticles)
             {
                 var btn = new Button
                 {
-                    Content = item.Название,
-                    Margin = new Thickness(3),
-                    Tag = item
+                    Content = article.Название,
+                    Margin = new Thickness(5),
+                    Tag = article
                 };
-                btn.Click += SourceButton_Click;
+                CodesPanel.Children.Add(btn);
+            }
+
+            // Создаем кнопки для законов
+            foreach (var article in lawsArticles)
+            {
+                var btn = new Button
+                {
+                    Content = article.Название,
+                    Margin = new Thickness(5),
+                    Tag = article
+                };
+                LawsPanel.Children.Add(btn);
+            }
+
+            // Создаем кнопки для статей из articles_full.json
+            foreach (var article in articlesFull)
+            {
+                var textBlock = new TextBlock
+                {
+                    Text = article.Название,
+                    TextWrapping = TextWrapping.Wrap,
+                    MaxWidth = 200
+                };
+
+                var btn = new Button
+                {
+                    Content = textBlock,
+                    Margin = new Thickness(5),
+                    Width = 390,
+                    HorizontalContentAlignment = HorizontalAlignment.Left
+                };
+
+                btn.Tag = article;
                 ArticlesPanel.Children.Add(btn);
-            }
-        }
-
-        // Эта панель - для отображения статей, создадим её в XAML
-        // например, добавьте в MainWindow.xaml:
-        // <StackPanel x:Name="ArticlesListPanel" Orientation="Vertical" />
-
-        private void SourceButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (sender is Button btn && btn.Tag is Article sourceItem)
-            {
-                // Очистить предыдущие статьи
-                ArticlesListPanel.Children.Clear();
-
-                // Найти статьи, принадлежащие выбранному источнику по Номер_источника_статьи
-                string sourceNumber = sourceItem.Номер_источника_статьи;
-
-                // Искать в кодексах и законах
-                var relatedArticles = new List<Article>();
-                if (!string.IsNullOrEmpty(sourceNumber))
-                {
-                    relatedArticles.AddRange(articlesCodeks.FindAll(a => a.Номер_источника_статьи == sourceNumber));
-                    relatedArticles.AddRange(articlesLaws.FindAll(a => a.Номер_источника_статьи == sourceNumber));
-                }
-
-                if (relatedArticles.Count > 0)
-                {
-                    // Для каждого статьи создаем кнопку
-                    foreach (var article in relatedArticles)
-                    {
-                        var articleBtn = new Button
-                        {
-                            Content = $"{article.Номер} - {article.Название}",
-                            Margin = new Thickness(2),
-                            Tag = article
-                        };
-                        articleBtn.Click += ArticleButton_Click;
-                        ArticlesListPanel.Children.Add(articleBtn);
-                    }
-                }
-                else
-                {
-                    // Если статей нет, показываем сообщение
-                    var txt = new TextBlock
-                    {
-                        Text = "Статьи не найдены.",
-                        Margin = new Thickness(5)
-                    };
-                    ArticlesListPanel.Children.Add(txt);
-                }
-            }
-        }
-
-        private void ArticleButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (sender is Button btn && btn.Tag is Article article)
-            {
-                MessageBox.Show($"Вы выбрали статью:\n{article.Номер} - {article.Название}", "Статья");
             }
         }
     }
 
+    // Общий класс для статей (закон, кодекс)
     public class Article
     {
         public string id { get; set; }
         public string Название { get; set; }
         public string Ссылка { get; set; }
-        public string Номер_источника_статьи { get; set; }
         public string Номер { get; set; }
+    }
+
+    // Для статей из articles_full.json
+    public class ArticleFull
+    {
+        public string id { get; set; }
+        public string Название { get; set; }
+        public string Ссылка { get; set; }
+        public string Номер_источника_статьи { get; set; }
     }
 }
