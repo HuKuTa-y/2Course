@@ -1,4 +1,4 @@
-﻿<Window x:Class="_2course.MainWindow"
+<Window x:Class="_2course.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -9,29 +9,33 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
-            <!-- Левая панель -->
+            <!-- Кодексы -->
             <ColumnDefinition Width="200"/>
-            <!-- Правая панель -->
+            <!-- Законы -->
             <ColumnDefinition Width="400"/>
-            
-            <ColumnDefinition Width="auto"/>
+            <!-- Статьи -->
+            <ColumnDefinition Width="300"/>
+            <!-- Тексты -->
         </Grid.ColumnDefinitions>
 
         <!-- Панель для кодексов -->
-        <StackPanel x:Name="CodesPanel" Grid.Column="0" Background="#EEE" Margin="5">
-            <TextBlock Text="Кодексы" FontWeight="Bold" Margin="5"/>
-        </StackPanel>
+        <ScrollViewer Grid.Column="0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Margin="5">
+            <StackPanel x:Name="CodesPanel"/>
+        </ScrollViewer>
 
         <!-- Панель для законов -->
-        <StackPanel x:Name="LawsPanel" Grid.Column="1" Background="#FFF" Margin="5">
-            <TextBlock Text="Законы" FontWeight="Bold" Margin="5"/>
-        </StackPanel>
+        <ScrollViewer Grid.Column="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Margin="5">
+            <StackPanel x:Name="LawsPanel"/>
+        </ScrollViewer>
 
         <!-- Панель для статей -->
         <ScrollViewer Grid.Column="2" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Margin="5">
-            <StackPanel x:Name="ArticlesPanel">
-                <TextBlock Text="Статьи" FontWeight="Bold" Margin="5"/>
-            </StackPanel>
+            <StackPanel x:Name="ArticlesPanel"/>
+        </ScrollViewer>
+
+        <!-- Панель для текста из text_articles.json -->
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel x:Name="ContentStackPanel" />
         </ScrollViewer>
     </Grid>
 </Window>
