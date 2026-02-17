@@ -1,0 +1,19 @@
+# Используем официальный образ Python
+FROM python:3.11-slim
+
+# Устанавливаем рабочую директорию внутри контейнера
+WORKDIR /app
+
+# Копируем зависимости и устанавливаем их
+COPY requirements.txt .
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
+
+# Копируем все JSON-файлы и сервер
+COPY . .
+
+# Открываем порт 5000
+EXPOSE 5000
+
+# Запускаем сервер
+CMD ["python", "server.py"]

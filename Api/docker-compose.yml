@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  law-api:
+    build: .
+    ports:
+      - "5000:5000"   # хост:контейнер
+    volumes:
+      # Опционально: если хотите обновлять JSON без пересборки
+      - ./codeks.json:/app/codeks.json:ro
+      - ./laws.json:/app/laws.json:ro
+      - ./articles_full.json:/app/articles_full.json:ro
+      - ./text_new_articles.json:/app/text_new_articles.json:ro
+    restart: unless-stopped
+    networks:
+      - law-network
+
+networks:
+  law-network:
+    driver: bridge
