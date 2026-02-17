@@ -1,19 +1,27 @@
-# Используем официальный образ Python
 FROM python:3.11-slim
 
-# Устанавливаем рабочую директорию внутри контейнера
+# Устанавливаем curl для healthcheck
+RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /app
 
-# Копируем зависимости и устанавливаем их
+# Копируем зависимости
 COPY requirements.txt .
-RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt
 
-# Копируем все JSON-файлы и сервер
-COPY . .
+# Устанавливаем зависимости
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Открываем порт 5000
+# Копируем приложение
+COPY server.py .
+
+# Копируем JSON файлы (резервная копия, если volumes не подключены)
+COPY *.json ./
+
+# Исправляем права на файлы
+RUN chmod 644 /app/*.json /app/server.py
+
+# Открываем порт
 EXPOSE 5000
 
-# Запускаем сервер
+# Запуск приложения
 CMD ["python", "server.py"]
