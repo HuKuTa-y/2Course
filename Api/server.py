@@ -86,6 +86,11 @@ async def get_laws():
     """Список законов (только для кнопок)"""
     return load_json_cached('laws.json')
 
+@app.get("/api/articles_full", response_model=List[ArticleFull])
+async def get_articles_full():
+    """Полный список всех статей (для загрузки при старте)"""
+    return load_json_cached('articles_full.json')
+
 
 @app.get("/api/articles/by-source", response_model=List[ArticleFull])
 async def get_articles_by_source(
