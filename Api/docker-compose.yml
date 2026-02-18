@@ -8,6 +8,8 @@ services:
     container_name: law-api
     ports:
       - "5000:5000"
+    volumes:
+      - ./:/app
     environment:
       - PYTHONUNBUFFERED=1
       - DATA_DIR=/app
@@ -21,14 +23,6 @@ services:
     networks:
       - law-network
     # Ограничения ресурсов (опционально)
-    deploy:
-      resources:
-        limits:
-          cpus: '1.0'
-          memory: 512M
-        reservations:
-          cpus: '0.25'
-          memory: 128M
 
 networks:
   law-network:
