@@ -55,6 +55,7 @@ namespace _2course
         // Списки ТОЛЬКО для кнопок (кодексы и законы)
         private List<Codek> codeksList;
         private List<Law> lawsList;
+        private List<ArticleFull> articlesFull;  // Добавлено для гибридного подхода
 
         // HttpClient для запросов к API
         private static readonly HttpClient httpClient = new HttpClient();
@@ -76,77 +77,130 @@ namespace _2course
             // Настройка HTTP-клиента
             httpClient.Timeout = TimeSpan.FromSeconds(30);
             httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
+            // Инициализация CacheManager
+            CacheManager.Initialize(httpClient, ApiBaseUrl);
+            // 🔥 Гибридная загрузка: essentials + articles_full
+            _ = LoadHybridDataAsync();
+            // Фоновая очистка старого кэша
+            _ = CacheManager.CleanupOldCacheAsync();
 
-            // Загружаем только списки для кнопок
-            _ = LoadBasicListsAsync();
+            
+
         }
 
-        
 
-        private async Task LoadBasicListsAsync()
+
+        private async Task LoadHybridDataAsync()
         {
             try
             {
-                // 🔹 Загружаем ТОЛЬКО кодексы (для кнопок)
-                string jsonCodeks = await httpClient.GetStringAsync($"{ApiBaseUrl}/api/codeks");
-                codeksList = JsonSerializer.Deserialize<List<Codek>>(jsonCodeks, jsonOptions);
+                //  ЭТАП 1: Обязательные маленькие файлы (всегда загружаем)
+                // isEssential=true → ошибка если нет интернета и нет кэша
 
-                // 🔹 Загружаем ТОЛЬКО законы (для кнопок)
-                string jsonLaws = await httpClient.GetStringAsync($"{ApiBaseUrl}/api/laws");
-                lawsList = JsonSerializer.Deserialize<List<Law>>(jsonLaws, jsonOptions);
+                codeksList = await CacheManager.GetDataAsync<List<Codek>>(
+                    "/api/codeks",
+                    "codeks.cache.json",
+                    isEssential: true);  // 🔥 Обязательно для работы UI
 
-                // 🔹 Создаём кнопки кодексов
-                if (codeksList != null)
+                lawsList = await CacheManager.GetDataAsync<List<Law>>(
+                    "/api/laws",
+                    "laws.cache.json",
+                    isEssential: true);  // 🔥 Обязательно для работы UI
+
+                //  ЭТАП 2: articles_full (3 MB) — нужно для поиска, но не критично
+                // isEssential=false → если нет интернета, вернёт null, но приложение продолжит работу
+
+                try
                 {
-                    foreach (var item in codeksList)
-                    {
-                        var btn = new Button
-                        {
-                            Content = item.Название,
-                            Margin = new Thickness(5),
-                            Tag = item,
-                            ToolTip = $"Номер: {item.Номер}"
-                        };
-                        btn.Click += CodeOrLawButton_Click;
-                        CodesPanel.Children.Add(btn);
-                    }
+                    articlesFull = await CacheManager.GetDataAsync<List<ArticleFull>>(
+                        "/api/articles_full",
+                        "articles_full.cache.json",
+                        isEssential: false);  // 🔥 Не критично, можно работать без
+                }
+                catch (OfflineException)
+                {
+                    // Нет интернета и нет кэша → продолжаем без articles_full
+                    // Поиск будет недоступен, но кодексы/законы работают
+                    articlesFull = new List<ArticleFull>();
                 }
 
-                // 🔹 Создаём кнопки законов
-                if (lawsList != null)
-                {
-                    foreach (var item in lawsList)
-                    {
-                        var btn = new Button
-                        {
-                            Content = item.Название,
-                            Margin = new Thickness(5),
-                            Tag = item,
-                            ToolTip = $"Номер: {item.Номер}"
-                        };
-                        btn.Click += CodeOrLawButton_Click;
-                        LawsPanel.Children.Add(btn);
-                    }
-                }
+                //  ЭТАП 3: Создаём UI (кнопки кодексов и законов)
+                BuildCodeksButtons();
+                BuildLawsButtons();
 
-                // Статьи и тексты НЕ загружаем — будем запрашивать с сервера по клику!
+                //  ЭТАП 4: Обновляем статус (опционально)
+                UpdateStatus();
 
             }
-            catch (HttpRequestException ex)
+            catch (OfflineException ex)
             {
+                //  Критическая ошибка: нет интернета и нет кэша для обязательных данных
                 MessageBox.Show(
-                    $"Не удалось подключиться к серверу API.\n\n{ex.Message}\n\n" +
-                    $"Проверьте:\n• Запущен ли Docker-контейнер\n• Правильный ли IP: 192.168.133.20\n• Открыт ли порт 5000",
-                    "Ошибка подключения",
+                    $"Не удалось загрузить данные.\n\n{ex.Message}\n\n" +
+                    $"Подключитесь к интернету для первого запуска приложения.",
+                    "Ошибка загрузки",
                     MessageBoxButton.OK,
-                    MessageBoxImage.Error
-                );
+                    MessageBoxImage.Error);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ошибка при загрузке данных: {ex.Message}", "Ошибка",
+                MessageBox.Show($"Ошибка: {ex.Message}", "Ошибка",
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        //  Вспомогательные методы для построения UI
+        private void BuildCodeksButtons()
+        {
+            if (codeksList == null) return;
+
+            CodesPanel.Children.Clear();
+            foreach (var item in codeksList)
+            {
+                var btn = new Button
+                {
+                    Content = item.Название,
+                    Margin = new Thickness(5),
+                    Tag = item,
+                    ToolTip = $"Номер: {item.Номер}"
+                };
+                btn.Click += CodeOrLawButton_Click;
+                CodesPanel.Children.Add(btn);
+            }
+        }
+
+        private void BuildLawsButtons()
+        {
+            if (lawsList == null) return;
+
+            LawsPanel.Children.Clear();
+            foreach (var item in lawsList)
+            {
+                var btn = new Button
+                {
+                    Content = item.Название,
+                    Margin = new Thickness(5),
+                    Tag = item,
+                    ToolTip = $"Номер: {item.Номер}"
+                };
+                btn.Click += CodeOrLawButton_Click;
+                LawsPanel.Children.Add(btn);
+            }
+        }
+
+        private void UpdateStatus()
+        {
+            // Опционально: показать статус кэша в StatusBar
+            var hasCodeks = CacheManager.HasCache("codeks.cache.json");
+            var hasArticles = CacheManager.HasCache("articles_full.cache.json");
+
+            var age = CacheManager.GetCacheAge("articles_full.cache.json");
+            var ageText = age.HasValue ? $" (обновлено {age.Value:hh\\:mm} назад)" : "";
+
+            // Если есть StatusBar в XAML:
+            // StatusText.Text = hasCodeks && hasArticles 
+            //     ? $" Данные загружены{ageText}" 
+            //     : " Онлайн-режим";
         }
 
         
@@ -157,7 +211,6 @@ namespace _2course
             if (btn == null) return;
 
             string sourceNumber = null;
-
             if (btn.Tag is Codek codek)
                 sourceNumber = codek.Номер;
             else if (btn.Tag is Law law)
@@ -166,7 +219,6 @@ namespace _2course
             if (string.IsNullOrEmpty(sourceNumber))
                 return;
 
-            // 🔹 Запрашиваем статьи С СЕРВЕРА (не локально!)
             await LoadArticlesFromServerAsync(sourceNumber);
         }
 
@@ -174,14 +226,14 @@ namespace _2course
         {
             try
             {
-                // 🔹 Запрос к серверу: получить статьи ТОЛЬКО этого источника
+                //  Запрос статей по источнику (кэшируется)
                 string encodedSource = Uri.EscapeDataString(sourceNumber);
-                string url = $"{ApiBaseUrl}/api/articles/by-source?source_number={encodedSource}";
 
-                string json = await httpClient.GetStringAsync(url);
-                var articles = JsonSerializer.Deserialize<List<ArticleFull>>(json, jsonOptions);
+                var articles = await CacheManager.GetDataAsync<List<ArticleFull>>(
+                    $"/api/articles/by-source?source_number={encodedSource}",
+                    $"articles_{Uri.EscapeDataString(sourceNumber)}.cache.json",
+                    isEssential: false);  // Не критично, если не загрузится
 
-                // Очищаем панель статей
                 ArticlesPanel.Children.Clear();
 
                 if (articles == null || articles.Count == 0)
@@ -196,7 +248,6 @@ namespace _2course
                     return;
                 }
 
-                // Создаём кнопки для полученных статей
                 foreach (var article in articles)
                 {
                     var textBlock = new TextBlock
@@ -212,19 +263,13 @@ namespace _2course
                         Margin = new Thickness(5),
                         Width = 390,
                         HorizontalContentAlignment = HorizontalAlignment.Left,
-                        Tag = article,  // Сохраняем статью для клика
+                        Tag = article,
                         ToolTip = article.Ссылка
                     };
                     btn.Click += ArticleButton_Click;
                     ArticlesPanel.Children.Add(btn);
                 }
 
-                // 🔹 Тексты статей НЕ загружаем — загрузим при клике на конкретную статью!
-
-            }
-            catch (HttpRequestException)
-            {
-                MessageBox.Show("Не удалось загрузить статьи. Проверьте подключение к серверу.");
             }
             catch (Exception ex)
             {
@@ -232,11 +277,10 @@ namespace _2course
             }
         }
 
-        
+    
 
         private async void ArticleButton_Click(object sender, RoutedEventArgs e)
         {
-            // Скрываем/очищаем предыдущие тексты
             ContentStackPanel.Children.Clear();
 
             var btn = sender as Button;
@@ -245,20 +289,23 @@ namespace _2course
 
             try
             {
-                // 🔹 Запрашиваем текст статьи С СЕРВЕРА
+                //  ГИБРИДНЫЙ ПОДХОД: текст загружается ТОЛЬКО при клике
+                // isEssential=false → если нет интернета, вернёт null, покажем заглушку
+
                 string encodedName = Uri.EscapeDataString(article.Название);
-                string url = $"{ApiBaseUrl}/api/article/text?article_name={encodedName}";
 
-                string json = await httpClient.GetStringAsync(url);
-                var textArticle = JsonSerializer.Deserialize<TextArticle>(json, jsonOptions);
+                var textArticle = await CacheManager.GetDataAsync<TextArticle>(
+                    $"/api/article/text?article_name={encodedName}",
+                    $"text_{encodedName}.cache.json",
+                    isEssential: false);  // 🔥 Lazy load: не критично
 
-                // Создаём и показываем текст
                 var textBlock = new TextBlock
                 {
-                    Text = textArticle?.Контент ?? "Текст не найден",
+                    Text = textArticle?.Контент ?? "Текст не загружен (проверьте подключение)",
                     TextWrapping = TextWrapping.Wrap,
                     Margin = new Thickness(5),
-                    FontSize = 12
+                    FontSize = 12,
+                    Foreground = textArticle == null ? Brushes.Gray : Brushes.Black
                 };
 
                 var border = new Border
@@ -269,25 +316,22 @@ namespace _2course
                     Margin = new Thickness(5),
                     Width = 400,
                     Padding = new Thickness(10),
-                    Background = Brushes.LightYellow,
+                    Background = textArticle == null ? Brushes.LightGray : Brushes.LightYellow,
                     Child = textBlock
                 };
 
                 ContentStackPanel.Children.Add(border);
 
-                // Прокрутка к новому контенту
-                
+                // Прокрутка к новому контенту (если есть ScrollViewer)
+                // ContentScrollViewer?.ScrollToBottom();
 
-            }
-            catch (HttpRequestException)
-            {
-                MessageBox.Show($"Не удалось загрузить текст статьи '{article.Название}'.");
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ошибка: {ex.Message}");
+                MessageBox.Show($"Не удалось загрузить текст: {ex.Message}");
             }
         }
+
 
 
         private async void FindArticlesButton_Click(object sender, RoutedEventArgs e)
@@ -313,41 +357,25 @@ namespace _2course
                     return;
                 }
 
-                // 🔹 Запрос поиска НА СЕРВЕРЕ
-                string url = $"{ApiBaseUrl}/api/search/by-number?number={searchNumber}";
-                string json = await httpClient.GetStringAsync(url);
-
-                var articles = JsonSerializer.Deserialize<List<ArticleFull>>(json, jsonOptions);
-
-                // Очищаем и заполняем панель
-                ArticlesPanel.Children.Clear();
-
-                if (articles == null || articles.Count == 0)
+                //  Вариант A: Если articlesFull уже загружен (гибридный подход) — ищем локально
+                if (articlesFull != null && articlesFull.Count > 0)
                 {
-                    MessageBox.Show($"Статьи с номером {searchNumber} не найдены.");
+                    var matchingArticles = articlesFull
+                        .Where(a => ExtractNumberFromTitle(a.Название) == searchNumber)
+                        .ToList();
+
+                    DisplaySearchResults(matchingArticles);
                     return;
                 }
 
-                foreach (var article in articles)
-                {
-                    var textBlock = new TextBlock
-                    {
-                        Text = article.Название,
-                        TextWrapping = TextWrapping.Wrap,
-                        MaxWidth = 200
-                    };
+                //  Вариант B: Если articlesFull нет — запрашиваем поиск на сервере
+                string url = $"{ApiBaseUrl}/api/search/by-number?number={searchNumber}";
+                var articles = await CacheManager.GetDataAsync<List<ArticleFull>>(
+                    $"/api/search/by-number?number={searchNumber}",
+                    $"search_number_{searchNumber}.cache.json",
+                    isEssential: false);
 
-                    var btn = new Button
-                    {
-                        Content = textBlock,
-                        Margin = new Thickness(5),
-                        Width = 390,
-                        HorizontalContentAlignment = HorizontalAlignment.Left,
-                        Tag = article
-                    };
-                    btn.Click += ArticleButton_Click;
-                    ArticlesPanel.Children.Add(btn);
-                }
+                DisplaySearchResults(articles ?? new List<ArticleFull>());
 
             }
             catch (Exception ex)
@@ -356,6 +384,7 @@ namespace _2course
             }
         }
 
+        
 
         private async void SearchButton_Click(object sender, RoutedEventArgs e)
         {
@@ -374,41 +403,28 @@ namespace _2course
         {
             try
             {
-                // 🔹 Запрос поиска по тексту НА СЕРВЕРЕ
-                string encodedQuery = Uri.EscapeDataString(searchText);
-                string url = $"{ApiBaseUrl}/api/search/by-text?query={encodedQuery}";
-
-                string json = await httpClient.GetStringAsync(url);
-                var articles = JsonSerializer.Deserialize<List<ArticleFull>>(json, jsonOptions);
-
-                ArticlesPanel.Children.Clear();
-
-                if (articles == null || articles.Count == 0)
+                //  Вариант A: Локальный поиск в articlesFull (если загружен)
+                if (articlesFull != null && articlesFull.Count > 0)
                 {
-                    MessageBox.Show($"Статьи по запросу '{searchText}' не найдены.");
+                    var searchWords = searchText.ToLower().Split(new[] { ' ', ',', '.', ';', ':' },
+                        StringSplitOptions.RemoveEmptyEntries);
+
+                    var matchingArticles = articlesFull
+                        .Where(a => searchWords.Any(w => a.Название.ToLower().Contains(w)))
+                        .ToList();
+
+                    DisplaySearchResults(matchingArticles);
                     return;
                 }
 
-                foreach (var article in articles)
-                {
-                    var textBlock = new TextBlock
-                    {
-                        Text = article.Название,
-                        TextWrapping = TextWrapping.Wrap,
-                        MaxWidth = 200
-                    };
+                //  Вариант B: Поиск на сервере
+                string encodedQuery = Uri.EscapeDataString(searchText);
+                var articles = await CacheManager.GetDataAsync<List<ArticleFull>>(
+                    $"/api/search/by-text?query={encodedQuery}",
+                    $"search_text_{encodedQuery}.cache.json",
+                    isEssential: false);
 
-                    var btn = new Button
-                    {
-                        Content = textBlock,
-                        Margin = new Thickness(5),
-                        Width = 390,
-                        HorizontalContentAlignment = HorizontalAlignment.Left,
-                        Tag = article
-                    };
-                    btn.Click += ArticleButton_Click;
-                    ArticlesPanel.Children.Add(btn);
-                }
+                DisplaySearchResults(articles ?? new List<ArticleFull>());
 
             }
             catch (Exception ex)
@@ -417,16 +433,45 @@ namespace _2course
             }
         }
 
+        //  Вспомогательный метод для отображения результатов поиска
+        private void DisplaySearchResults(List<ArticleFull> articles)
+        {
+            ArticlesPanel.Children.Clear();
+
+            if (articles.Count == 0)
+            {
+                MessageBox.Show("Статьи не найдены.");
+                return;
+            }
+
+            foreach (var article in articles)
+            {
+                var textBlock = new TextBlock
+                {
+                    Text = article.Название,
+                    TextWrapping = TextWrapping.Wrap,
+                    MaxWidth = 200
+                };
+
+                var btn = new Button
+                {
+                    Content = textBlock,
+                    Margin = new Thickness(5),
+                    Width = 390,
+                    HorizontalContentAlignment = HorizontalAlignment.Left,
+                    Tag = article
+                };
+                btn.Click += ArticleButton_Click;
+                ArticlesPanel.Children.Add(btn);
+            }
+        }
+
+      
 
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             var textBox = sender as TextBox;
-            if (textBox != null && textBox.Text == "Введите номер статьи")
-            {
-                textBox.Text = "";
-                textBox.Foreground = Brushes.Black;
-            }
-            else if (textBox != null && textBox.Text == "Поиск...")
+            if (textBox != null && (textBox.Text == "Введите номер статьи" || textBox.Text == "Поиск..."))
             {
                 textBox.Text = "";
                 textBox.Foreground = Brushes.Black;
@@ -459,6 +504,7 @@ namespace _2course
             ContentStackPanel.Children.Clear();
         }
 
+    
 
         private int ExtractNumberFromTitle(string title)
         {
