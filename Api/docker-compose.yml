@@ -9,7 +9,7 @@ services:
     ports:
       - "5000:5000"
     volumes:
-      - ./:/app  # ← Синхронизация файлов в реальном времени!
+      - ./:/app:z  # ← Синхронизация файлов в реальном времени!
     environment:
       - PYTHONUNBUFFERED=1
       - DATA_DIR=/app
