@@ -20,6 +20,11 @@
             <TextBox x:Name="ArticleNumberTextBox" Width="150" Margin="5" Text="Введите номер статьи" Foreground="Gray" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"/>
             <Button Content="Найти статьи" Margin="5" Click="FindArticlesButton_Click"/>
             <Button Content="Отмена" Margin="5" Click="CancelSearchButton_Click"/>
+			<!-- В самом верху, внутри SearchPanel, после кнопки FavoritesButton -->
+
+            <!-- НОВАЯ КНОПКА: Избранное -->
+            <Button x:Name="FavoritesButton" Content="⭐ Избранное" Margin="5,5,15,5" Click="FavoritesButton_Click" FontWeight="Bold"/>
+			<Button x:Name="NotesMenuButton" Content="📝 Мои заметки" Margin="5,5,15,5" Click="NotesMenuButton_Click" FontWeight="Bold"/>
         </StackPanel>
 
         <!-- Панель для поиска по словам (во втором ряду) -->
@@ -31,14 +36,10 @@
         <!-- Основной контент -->
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="400"/>
-                <!-- Кодексы -->
-                <ColumnDefinition Width="300"/>
-                <!-- Законы -->
-                <ColumnDefinition Width="500"/>
-                <!-- Статьи -->
-                <ColumnDefinition Width="400"/>
-                <!-- Тексты -->
+                <ColumnDefinition Width="1.5*" MinWidth="350"/>
+                <ColumnDefinition Width="1*" MinWidth="300"/>
+                <ColumnDefinition Width="2.5*" MinWidth="400"/>
+                <ColumnDefinition Width="1.5*" MinWidth="460"/>
             </Grid.ColumnDefinitions>
 
             <!-- Панель для кодексов -->
@@ -60,6 +61,10 @@
             <ScrollViewer Grid.Column="3" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Margin="5">
                 <StackPanel x:Name="ContentStackPanel" />
             </ScrollViewer>
+            <StatusBar Grid.Row="2" VerticalAlignment="Bottom" Height="24">
+                <TextBlock x:Name="StatusText" Text="Готово" VerticalAlignment="Center" Margin="10,0"/>
+            </StatusBar>
         </Grid>
+        
     </Grid>
 </Window>
