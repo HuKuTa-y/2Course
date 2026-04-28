@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_2course"
         mc:Ignorable="d"
-        Title="Кодексы и статьи" Height="800" Width="1600">
+        Title="CodeX" Height="800" Width="1600">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

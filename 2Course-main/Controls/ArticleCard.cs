@@ -11,8 +11,9 @@ namespace _2course.Controls
     {
         public ArticleFull? Article { get; set; }
         public event RoutedEventHandler? ArticleClicked;
+        public string? SourceName { get; set; }
         public event RoutedEventHandler? FavoriteToggled;
-        public event RoutedEventHandler? NoteClicked; // ← Это событие должно сработать
+        public event RoutedEventHandler? NoteClicked;
 
         public ArticleCard(ArticleFull article)
         {
@@ -24,22 +25,47 @@ namespace _2course.Controls
 
         private void CreateVisuals()
         {
+            // Текст статьи
             var textBlock = new TextBlock
             {
                 Text = Article?.Название ?? "",
                 TextWrapping = TextWrapping.Wrap,
-                MaxWidth = 330,
+                TextTrimming = TextTrimming.CharacterEllipsis, // 🔥 Обрезание с троеточием
                 VerticalAlignment = VerticalAlignment.Center,
-                Margin = new Thickness(5, 0, 55, 0)
+                Margin = new Thickness(5, 0, 55, 0),
+                Foreground = Brushes.Black,
+                FontSize = 13
             };
 
             var starBtn = CreateStarButton();
             var noteBtn = CreateNoteButton();
 
-            var grid = new Grid { Margin = new Thickness(2) };
+            // 🔥 Кнопки в правой колонке
+            var buttonsPanel = new StackPanel
+            {
+                Orientation = Orientation.Horizontal,
+                HorizontalAlignment = HorizontalAlignment.Right,
+                VerticalAlignment = VerticalAlignment.Top,
+                Margin = new Thickness(0, 2, 5, 0),
+                Children = { noteBtn, starBtn }
+            };
+
+            // 🔥 Grid с колонками
+            var grid = new Grid
+            {
+                Margin = new Thickness(2),
+                ClipToBounds = true
+            };
+
+            // 🔥 Исправлено: new GridLength(1, GridUnitType.Star) вместо GridLength.Star
+            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) }); // Текст
+            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto }); // Кнопки
+
+            Grid.SetColumn(textBlock, 0);
+            Grid.SetColumn(buttonsPanel, 1);
+
             grid.Children.Add(textBlock);
-            grid.Children.Add(starBtn);
-            grid.Children.Add(noteBtn);
+            grid.Children.Add(buttonsPanel);
 
             Content = grid;
             Width = 390;
@@ -110,27 +136,40 @@ namespace _2course.Controls
             {
                 foreach (var child in grid.Children)
                 {
-                    if (child is Button btn)
+                    // Проверяем кнопки внутри StackPanel (buttonsPanel)
+                    if (child is StackPanel sp)
                     {
-                        if (btn.Tag?.ToString() == "STAR")
+                        foreach (var spChild in sp.Children)
                         {
-                            btn.Click += (s, e) =>
+                            if (spChild is Button btn)
                             {
-                                e.Handled = true;
-                                FavoritesManager.ToggleFavorite(Article?.Название ?? "");
-                                btn.Content = FavoritesManager.IsFavorite(Article?.Название ?? "") ? "\u2605" : "\u2606";
-                                btn.Foreground = FavoritesManager.IsFavorite(Article?.Название ?? "") ? Brushes.Gold : Brushes.Gray;
-                                FavoriteToggled?.Invoke(this, e);
-                            };
+                                if (btn.Tag?.ToString() == "STAR")
+                                {
+                                    btn.Click += (s, e) =>
+                                    {
+                                        e.Handled = true;
+                                        FavoritesManager.ToggleFavorite(Article?.Название ?? "");
+                                        btn.Content = FavoritesManager.IsFavorite(Article?.Название ?? "") ? "\u2605" : "\u2606";
+                                        btn.Foreground = FavoritesManager.IsFavorite(Article?.Название ?? "") ? Brushes.Gold : Brushes.Gray;
+                                        FavoriteToggled?.Invoke(this, e);
+                                    };
+                                }
+                                else if (btn.Tag?.ToString() == "NOTE")
+                                {
+                                    btn.Click += (s, e) =>
+                                    {
+                                        e.Handled = true;
+                                        NoteClicked?.Invoke(this, e);
+                                    };
+                                }
+                            }
                         }
-                        else if (btn.Tag?.ToString() == "NOTE")
+                    }
+                    else if (child is Button btn)
+                    {
+                        if (btn.Tag?.ToString() == "STAR" || btn.Tag?.ToString() == "NOTE")
                         {
-                            btn.Click += (s, e) =>
-                            {
-                                e.Handled = true;
-                                // 🔥 Вызываем событие, чтобы MainWindow открыл окно
-                                NoteClicked?.Invoke(this, e);
-                            };
+                            btn.Click += (s, e) => e.Handled = true;
                         }
                     }
                 }
