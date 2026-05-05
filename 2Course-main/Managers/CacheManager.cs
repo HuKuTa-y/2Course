@@ -17,8 +17,8 @@ namespace _2course.Managers
         private static readonly TimeSpan DefaultCacheLifetime = TimeSpan.FromHours(24);
         public const string CurrentSchemaVersion = "1.0";
 
-        public static HttpClient HttpClient { get; set; }
-        public static string ApiBaseUrl { get; set; }
+        public static HttpClient? HttpClient { get; set; }
+        public static string? ApiBaseUrl { get; set; }
 
         private static readonly ConcurrentDictionary<string, DateTime> _refreshQueue = new();
 
@@ -40,13 +40,13 @@ namespace _2course.Managers
             return $"{hash.Substring(0, Math.Min(64, hash.Length))}{extension}";
         }
 
-        public static async Task<T> GetDataAsync<T>(
+        public static async Task<T?> GetDataAsync<T>(
             string endpoint,
             string cacheFileName,
             bool forceRefresh = false,
             bool isEssential = false,
             TimeSpan? customLifetime = null,
-            string schemaVersion = null)
+            string? schemaVersion = null)
         {
             var lifetime = customLifetime ?? DefaultCacheLifetime;
             var expectedSchema = schemaVersion ?? CurrentSchemaVersion;
@@ -78,6 +78,9 @@ namespace _2course.Managers
 
             try
             {
+                if (HttpClient == null || string.IsNullOrEmpty(ApiBaseUrl))
+                    throw new InvalidOperationException("CacheManager not initialized");
+
                 var url = $"{ApiBaseUrl}{endpoint}";
                 var json = await HttpClient.GetStringAsync(url);
                 await File.WriteAllTextAsync(cachePath, json);
@@ -121,6 +124,8 @@ namespace _2course.Managers
             try
             {
                 await Task.Delay(2000);
+                if (HttpClient == null || string.IsNullOrEmpty(ApiBaseUrl)) return;
+
                 var url = $"{ApiBaseUrl}{endpoint}";
                 var json = await HttpClient.GetStringAsync(url);
 
@@ -157,10 +162,12 @@ namespace _2course.Managers
             catch { return null; }
         }
 
-        public static async Task<bool> ForceRefreshAsync<T>(string endpoint, string cacheFileName, string schemaVersion = null)
+        public static async Task<bool> ForceRefreshAsync<T>(string endpoint, string cacheFileName, string? schemaVersion = null)
         {
             try
             {
+                if (HttpClient == null || string.IsNullOrEmpty(ApiBaseUrl)) return false;
+
                 var expectedSchema = schemaVersion ?? CurrentSchemaVersion;
                 var url = $"{ApiBaseUrl}{endpoint}";
                 var json = await HttpClient.GetStringAsync(url);

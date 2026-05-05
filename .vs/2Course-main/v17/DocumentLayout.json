@@ -3,8 +3,48 @@
   "WorkspaceRootPath": "C:\\Users\\Academy\\Desktop\\2Course-main\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Controls\\AiChatControl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:2Course-main\\Controls\\AiChatControl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Services\\YandexGPTService.cs||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:2Course-main\\Services\\YandexGPTService.cs||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\MainWindow.xaml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:2Course-main\\MainWindow.xaml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\MainWindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:2Course-main\\MainWindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Helpers\\SearchHelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:2Course-main\\Helpers\\SearchHelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Helpers\\UiHelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:2Course-main\\Helpers\\UiHelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Managers\\CacheManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:2Course-main\\Managers\\CacheManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\ViewModels\\MainViewModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:2Course-main\\ViewModels\\MainViewModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Managers\\FavoritesManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:2Course-main\\Managers\\FavoritesManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Models\\ArticleFull.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:2Course-main\\Models\\ArticleFull.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Models\\LawyerNote.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:2Course-main\\Models\\LawyerNote.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Services\\LawService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -15,20 +55,28 @@
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:2Course-main\\Services\\ILawService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Controls\\ArticleCard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:2Course-main\\Controls\\ArticleCard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Models\\TextArticle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:2Course-main\\Models\\TextArticle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\MainWindow.xaml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:2Course-main\\MainWindow.xaml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Models\\Law.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:2Course-main\\Models\\Law.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Models\\Codek.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:2Course-main\\Models\\Codek.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Managers\\AnnotationManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:2Course-main\\Managers\\AnnotationManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Helpers\\PdfExportHelper.cs||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:2Course-main\\Helpers\\PdfExportHelper.cs||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Helpers\\UiHelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:2Course-main\\Helpers\\UiHelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Controls\\ArticleCard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:2Course-main\\Controls\\ArticleCard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,100 +86,241 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 2,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "CacheManager.cs",
+              "DocumentMoniker": "C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Managers\\CacheManager.cs",
+              "RelativeDocumentMoniker": "2Course-main\\Managers\\CacheManager.cs",
+              "ToolTip": "C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Managers\\CacheManager.cs",
+              "RelativeToolTip": "2Course-main\\Managers\\CacheManager.cs",
+              "ViewState": "AQIAAM0AAAAAAAAAAAAIwO4AAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-29T06:06:49.569Z",
+              "IsPinned": true
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AiChatControl.cs",
+              "DocumentMoniker": "C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Controls\\AiChatControl.cs",
+              "RelativeDocumentMoniker": "2Course-main\\Controls\\AiChatControl.cs",
+              "ToolTip": "C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Controls\\AiChatControl.cs",
+              "RelativeToolTip": "2Course-main\\Controls\\AiChatControl.cs",
+              "ViewState": "AQIAAIUAAAAAAAAAAAAuwJEAAAArAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-29T07:51:15.143Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "LawService.cs",
-              "DocumentMoniker": "C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Services\\LawService.cs",
-              "RelativeDocumentMoniker": "2Course-main\\Services\\LawService.cs",
-              "ToolTip": "C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Services\\LawService.cs",
-              "RelativeToolTip": "2Course-main\\Services\\LawService.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Title": "YandexGPTService.cs",
+              "DocumentMoniker": "C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Services\\YandexGPTService.cs",
+              "RelativeDocumentMoniker": "2Course-main\\Services\\YandexGPTService.cs",
+              "ToolTip": "C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Services\\YandexGPTService.cs",
+              "RelativeToolTip": "2Course-main\\Services\\YandexGPTService.cs",
+              "ViewState": "AQIAAH4AAAAAAAAAAAAuwKYAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-28T10:50:56.864Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-29T07:50:33.836Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ILawService.cs",
-              "DocumentMoniker": "C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Services\\ILawService.cs",
-              "RelativeDocumentMoniker": "2Course-main\\Services\\ILawService.cs",
-              "ToolTip": "C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Services\\ILawService.cs",
-              "RelativeToolTip": "2Course-main\\Services\\ILawService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "DocumentIndex": 9,
+              "Title": "ArticleFull.cs",
+              "DocumentMoniker": "C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Models\\ArticleFull.cs",
+              "RelativeDocumentMoniker": "2Course-main\\Models\\ArticleFull.cs",
+              "ToolTip": "C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Models\\ArticleFull.cs",
+              "RelativeToolTip": "2Course-main\\Models\\ArticleFull.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-28T10:50:55.653Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-29T06:07:44.816Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "PdfExportHelper.cs",
-              "DocumentMoniker": "C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Helpers\\PdfExportHelper.cs",
-              "RelativeDocumentMoniker": "2Course-main\\Helpers\\PdfExportHelper.cs",
-              "ToolTip": "C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Helpers\\PdfExportHelper.cs",
-              "RelativeToolTip": "2Course-main\\Helpers\\PdfExportHelper.cs",
-              "ViewState": "AQIAABIAAAAAAAAAAAAAAB4AAAAwAAAA",
+              "DocumentIndex": 8,
+              "Title": "FavoritesManager.cs",
+              "DocumentMoniker": "C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Managers\\FavoritesManager.cs",
+              "RelativeDocumentMoniker": "2Course-main\\Managers\\FavoritesManager.cs",
+              "ToolTip": "C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Managers\\FavoritesManager.cs",
+              "RelativeToolTip": "2Course-main\\Managers\\FavoritesManager.cs",
+              "ViewState": "AQIAACwAAAAAAAAAAAAIwEwAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T10:45:40.55Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "UiHelper.cs",
-              "DocumentMoniker": "C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Helpers\\UiHelper.cs",
-              "RelativeDocumentMoniker": "2Course-main\\Helpers\\UiHelper.cs",
-              "ToolTip": "C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Helpers\\UiHelper.cs",
-              "RelativeToolTip": "2Course-main\\Helpers\\UiHelper.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACgAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T08:23:02.08Z"
+              "WhenOpened": "2026-04-29T06:07:13.648Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "ArticleCard.cs",
-              "DocumentMoniker": "C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Controls\\ArticleCard.cs",
-              "RelativeDocumentMoniker": "2Course-main\\Controls\\ArticleCard.cs",
-              "ToolTip": "C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Controls\\ArticleCard.cs",
-              "RelativeToolTip": "2Course-main\\Controls\\ArticleCard.cs",
-              "ViewState": "AQIAABMAAAAAAAAAAAAgwE0AAAAiAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T07:42:19.991Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "2Course-main\\MainWindow.xaml.cs",
               "ToolTip": "C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\MainWindow.xaml.cs",
               "RelativeToolTip": "2Course-main\\MainWindow.xaml.cs",
-              "ViewState": "AQIAALoCAAAAAAAAAAAAAMgCAAARAAAA",
+              "ViewState": "AQIAAE0AAAAAAAAAAAAIwJEAAAAmAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-22T07:40:31.801Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-22T07:40:31.801Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\MainWindow.xaml",
               "RelativeDocumentMoniker": "2Course-main\\MainWindow.xaml",
               "ToolTip": "C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\MainWindow.xaml",
               "RelativeToolTip": "2Course-main\\MainWindow.xaml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAUAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAfAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-04-17T07:56:22.782Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-17T07:56:22.782Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "LawyerNote.cs",
+              "DocumentMoniker": "C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Models\\LawyerNote.cs",
+              "RelativeDocumentMoniker": "2Course-main\\Models\\LawyerNote.cs",
+              "ToolTip": "C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Models\\LawyerNote.cs",
+              "RelativeToolTip": "2Course-main\\Models\\LawyerNote.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-29T06:08:24.92Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "MainViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\ViewModels\\MainViewModel.cs",
+              "RelativeDocumentMoniker": "2Course-main\\ViewModels\\MainViewModel.cs",
+              "ToolTip": "C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\ViewModels\\MainViewModel.cs",
+              "RelativeToolTip": "2Course-main\\ViewModels\\MainViewModel.cs",
+              "ViewState": "AQIAACoAAAAAAAAAAAAAADgAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-29T06:09:55.461Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "UiHelper.cs",
+              "DocumentMoniker": "C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Helpers\\UiHelper.cs",
+              "RelativeDocumentMoniker": "2Course-main\\Helpers\\UiHelper.cs",
+              "ToolTip": "C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Helpers\\UiHelper.cs",
+              "RelativeToolTip": "2Course-main\\Helpers\\UiHelper.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAABYAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-22T08:23:02.08Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "SearchHelper.cs",
+              "DocumentMoniker": "C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Helpers\\SearchHelper.cs",
+              "RelativeDocumentMoniker": "2Course-main\\Helpers\\SearchHelper.cs",
+              "ToolTip": "C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Helpers\\SearchHelper.cs",
+              "RelativeToolTip": "2Course-main\\Helpers\\SearchHelper.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACsAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-29T06:21:55.23Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "TextArticle.cs",
+              "DocumentMoniker": "C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Models\\TextArticle.cs",
+              "RelativeDocumentMoniker": "2Course-main\\Models\\TextArticle.cs",
+              "ToolTip": "C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Models\\TextArticle.cs",
+              "RelativeToolTip": "2Course-main\\Models\\TextArticle.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-29T06:08:40.267Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Law.cs",
+              "DocumentMoniker": "C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Models\\Law.cs",
+              "RelativeDocumentMoniker": "2Course-main\\Models\\Law.cs",
+              "ToolTip": "C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Models\\Law.cs",
+              "RelativeToolTip": "2Course-main\\Models\\Law.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-29T06:08:11.143Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Codek.cs",
+              "DocumentMoniker": "C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Models\\Codek.cs",
+              "RelativeDocumentMoniker": "2Course-main\\Models\\Codek.cs",
+              "ToolTip": "C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Models\\Codek.cs",
+              "RelativeToolTip": "2Course-main\\Models\\Codek.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-29T06:08:01.255Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ILawService.cs",
+              "DocumentMoniker": "C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Services\\ILawService.cs",
+              "RelativeDocumentMoniker": "2Course-main\\Services\\ILawService.cs",
+              "ToolTip": "C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Services\\ILawService.cs",
+              "RelativeToolTip": "2Course-main\\Services\\ILawService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-28T10:50:55.653Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "LawService.cs",
+              "DocumentMoniker": "C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Services\\LawService.cs",
+              "RelativeDocumentMoniker": "2Course-main\\Services\\LawService.cs",
+              "ToolTip": "C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Services\\LawService.cs",
+              "RelativeToolTip": "2Course-main\\Services\\LawService.cs",
+              "ViewState": "AQIAAGIAAAAAAAAAAAAIwIIAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-28T10:50:56.864Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "AnnotationManager.cs",
+              "DocumentMoniker": "C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Managers\\AnnotationManager.cs",
+              "RelativeDocumentMoniker": "2Course-main\\Managers\\AnnotationManager.cs",
+              "ToolTip": "C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Managers\\AnnotationManager.cs",
+              "RelativeToolTip": "2Course-main\\Managers\\AnnotationManager.cs",
+              "ViewState": "AQIAAEQAAAAAAAAAAAAIwGQAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-29T06:06:41.891Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "PdfExportHelper.cs",
+              "DocumentMoniker": "C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Helpers\\PdfExportHelper.cs",
+              "RelativeDocumentMoniker": "2Course-main\\Helpers\\PdfExportHelper.cs",
+              "ToolTip": "C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Helpers\\PdfExportHelper.cs",
+              "RelativeToolTip": "2Course-main\\Helpers\\PdfExportHelper.cs",
+              "ViewState": "AQIAACIAAAAAAAAAAAAIwEIAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-22T10:45:40.55Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "ArticleCard.cs",
+              "DocumentMoniker": "C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Controls\\ArticleCard.cs",
+              "RelativeDocumentMoniker": "2Course-main\\Controls\\ArticleCard.cs",
+              "ToolTip": "C:\\Users\\Academy\\Desktop\\2Course-main\\2Course-main\\Controls\\ArticleCard.cs",
+              "RelativeToolTip": "2Course-main\\Controls\\ArticleCard.cs",
+              "ViewState": "AQIAAJgAAAAAAAAAAAAIwLgAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-22T07:42:19.991Z"
             }
           ]
         }

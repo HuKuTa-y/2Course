@@ -5,66 +5,86 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_2course"
         mc:Ignorable="d"
-        Title="CodeX" Height="800" Width="1600">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <!-- Панель для поиска -->
-            <RowDefinition Height="*"/>
-            <!-- Основной контент -->
-        </Grid.RowDefinitions>
-        
-        <!-- Основная панель поиска по номеру -->
-        <StackPanel Orientation="Horizontal" Margin="5" Grid.Row="0" VerticalAlignment="Top" x:Name="SearchPanel">
-            <TextBox x:Name="ArticleNumberTextBox" Width="150" Margin="5" Text="Введите номер статьи" Foreground="Gray" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"/>
-            <Button Content="Найти статьи" Margin="5" Click="FindArticlesButton_Click"/>
-            <Button Content="Отмена" Margin="5" Click="CancelSearchButton_Click"/>
-			<!-- В самом верху, внутри SearchPanel, после кнопки FavoritesButton -->
+        Title="CodeX" Height="800" Width="1700">
 
-            <!-- НОВАЯ КНОПКА: Избранное -->
-            <Button x:Name="FavoritesButton" Content="⭐ Избранное" Margin="5,5,15,5" Click="FavoritesButton_Click" FontWeight="Bold"/>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+
+		<!-- 🔹 Панель поиска по номеру -->
+		<StackPanel Orientation="Horizontal" Margin="5" Grid.Row="0" VerticalAlignment="Top" x:Name="SearchPanel">
+			<TextBox x:Name="ArticleNumberTextBox" Width="150" Margin="5" Text="Введите номер статьи" Foreground="Gray" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"/>
+			<Button Content="Найти статьи" Margin="5" Click="FindArticlesButton_Click"/>
+			<Button Content="Отмена" Margin="5" Click="CancelSearchButton_Click"/>
+			<Button x:Name="FavoritesButton" Content="⭐ Избранное" Margin="5,5,15,5" Click="FavoritesButton_Click" FontWeight="Bold"/>
 			<Button x:Name="NotesMenuButton" Content="📝 Мои заметки" Margin="5,5,15,5" Click="NotesMenuButton_Click" FontWeight="Bold"/>
-        </StackPanel>
+			<!-- 🔥 Кнопка открытия AI-чата -->
+			<Button Content="🤖 AI-Анализ" Margin="5,5,15,5" Click="AiChatButton_Click" FontWeight="Bold" Background="Lavender" BorderBrush="SteelBlue"/>
+		</StackPanel>
 
-        <!-- Панель для поиска по словам (во втором ряду) -->
-        <StackPanel Orientation="Horizontal" Margin="5" Grid.Row="1" VerticalAlignment="Top" x:Name="SearchWordsPanel">
-            <TextBox x:Name="SearchTextBox" Width="200" Margin="5"/>
-            <Button Content="Искать" Margin="5" Click="SearchButton_Click"/>
-        </StackPanel>
+		<!-- 🔹 Панель поиска по тексту -->
+		<StackPanel Orientation="Horizontal" Margin="5" Grid.Row="1" VerticalAlignment="Top" x:Name="SearchWordsPanel">
+			<TextBox x:Name="SearchTextBox" Width="200" Margin="5" Text="Поиск по тексту..." Foreground="Gray" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"/>
+			<Button Content="Искать" Margin="5" Click="SearchButton_Click"/>
+		</StackPanel>
 
-        <!-- Основной контент -->
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1.5*" MinWidth="350"/>
-                <ColumnDefinition Width="1*" MinWidth="300"/>
-                <ColumnDefinition Width="2.5*" MinWidth="400"/>
-                <ColumnDefinition Width="1.5*" MinWidth="460"/>
-            </Grid.ColumnDefinitions>
+		<!-- 🔹 Вкладки: Законы / AI-Анализ -->
+		<TabControl x:Name="MainTabs" Grid.Row="2" Margin="5,0,5,5">
 
-            <!-- Панель для кодексов -->
-            <ScrollViewer Grid.Column="0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Margin="5">
-                <StackPanel x:Name="CodesPanel"/>
-            </ScrollViewer>
+			<!-- 🔸 Вкладка 1: Законы (твой существующий интерфейс) -->
+			<TabItem Header="📚 Законы" FontSize="14">
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="1.5*" MinWidth="350"/>
+						<ColumnDefinition Width="1*" MinWidth="400"/>
+						<ColumnDefinition Width="1.5*" MinWidth="500"/>
+						<ColumnDefinition Width="2*" MinWidth="550"/>
+					</Grid.ColumnDefinitions>
 
-            <!-- Панель для законов -->
-            <ScrollViewer Grid.Column="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Margin="5">
-                <StackPanel x:Name="LawsPanel"/>
-            </ScrollViewer>
+					<!-- Колонка 1: Кодексы -->
+					<Border Grid.Column="0" BorderBrush="LightGray" BorderThickness="1" CornerRadius="4" Margin="2">
+						<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+							<StackPanel x:Name="CodesPanel" Margin="5"/>
+						</ScrollViewer>
+					</Border>
 
-            <!-- Панель для статей -->
-            <ScrollViewer Grid.Column="2" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Margin="5">
-                <StackPanel x:Name="ArticlesPanel"/>
-            </ScrollViewer>
+					<!-- Колонка 2: Законы -->
+					<Border Grid.Column="1" BorderBrush="LightGray" BorderThickness="1" CornerRadius="4" Margin="2">
+						<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+							<StackPanel x:Name="LawsPanel" Margin="5"/>
+						</ScrollViewer>
+					</Border>
 
-            <!-- Панель для текста из text_articles.json -->
-            <ScrollViewer Grid.Column="3" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Margin="5">
-                <StackPanel x:Name="ContentStackPanel" />
-            </ScrollViewer>
-            <StatusBar Grid.Row="2" VerticalAlignment="Bottom" Height="24">
-                <TextBlock x:Name="StatusText" Text="Готово" VerticalAlignment="Center" Margin="10,0"/>
-            </StatusBar>
-        </Grid>
-        
-    </Grid>
+					<!-- Колонка 3: Статьи -->
+					<Border Grid.Column="2" BorderBrush="LightGray" BorderThickness="1" CornerRadius="4" Margin="2">
+						<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+							<StackPanel x:Name="ArticlesPanel" Margin="5"/>
+						</ScrollViewer>
+					</Border>
+
+					<!-- Колонка 4: Текст статьи -->
+					<Border Grid.Column="3" BorderBrush="LightGray" BorderThickness="1" CornerRadius="4" Margin="2">
+						<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+							<StackPanel x:Name="ContentStackPanel" Margin="5"/>
+						</ScrollViewer>
+					</Border>
+				</Grid>
+			</TabItem>
+
+			<!-- 🔸 Вкладка 2: 🤖 AI-Анализ (новая) -->
+			<TabItem Header="🤖 AI-Анализ" FontSize="14">
+				<Grid x:Name="AiChatContainer" Background="WhiteSmoke"/>
+			</TabItem>
+
+		</TabControl>
+
+		<!-- 🔹 Строка статуса (внизу, поверх всего) -->
+		<StatusBar Grid.Row="2" VerticalAlignment="Bottom" Height="24">
+			<TextBlock x:Name="StatusText" Text="Готово" VerticalAlignment="Center" Margin="10,0"/>
+		</StatusBar>
+
+	</Grid>
 </Window>
